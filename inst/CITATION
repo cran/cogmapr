@@ -1,0 +1,28 @@
+bibentry(bibtype = "Manual",
+         title = "cogmapr - Cognitive Mapping tools for qualitative data analysis",
+         author = c(person("Frederic M.", "Vanwindekens"),
+                    person("Didier", "Stilmant"), 
+                    person("Philippe V.", "Baret")),
+         year = 2015)
+
+bibentry(bibtype = "Article",
+         author = c(person("Frédéric M. Vanwindekens"),
+                    person("Didier Stilmant"),
+                    person("Philippe V. Baret")),
+         title = "Development of a broadened cognitive mapping approach for analysing
+             systems of practices in social-ecological systems",
+         journal = "Ecological Modelling",
+         year = "2013",
+         volume = "250",
+         pages = "352 - 362")
+
+bibentry(bibtype = "Article",
+         author = c(person("Frédéric M. Vanwindekens"),
+                    person("Philippe V. Baret"),
+                    person("Didier Stilmant")),
+         title = "A new approach for comparing and categorizing farmers’ systems of
+             practice based on cognitive mapping and graph theory indicators",
+         journal = "Ecological Modelling",
+         year = "2014",
+         volume = "274",
+         pages = "1 - 11")

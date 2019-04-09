@@ -1,0 +1,2 @@
+##' @import utils 
+utils::globalVariables(c(".","V1","Var1","Var2","centrality","coding_id","coding_weight","coding_weight.y","concept.class","concept_from","concept_from_name","concept_to","concept_to_name","connections","dbDriver","desc","dimension","do","doc_id","doc_path","edge","edge_name","from","indegree","indic","indicator","midX","midY","n","n_receiver","n_transmitter","name","nmax","num","outdegree","p.value","selected_text","to","unit_id","unit_name","value","weight","x","x.from","x.to","y","y.from","y.to"))

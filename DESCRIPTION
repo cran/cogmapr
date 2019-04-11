@@ -1,7 +1,7 @@
 Package: cogmapr
 Title: Cognitive Mapping Tools Based on Coding of Textual Sources
-Version: 0.9
-Date: 2019-04-02
+Version: 0.9.1
+Date: 2019-04-10
 Authors@R: c(person("Frédéric M.", "Vanwindekens", role = c("aut", "cre"),
                           email = "f.vanwindekens@cra.wallonie.be",
 			  comment = c(ORCID = "0000-0002-9117-7543")),
@@ -12,18 +12,20 @@ Description: Functions for building cognitive maps based on qualitative data. In
 URL: https://frdvnw.gitlab.io/cogmapr/
 BugReports: https://gitlab.com/FrdVnW/cogmapr/issues
 License: GPL-3
+SystemRequirements: libcurl: libcurl-devel (rpm) or
+        libcurl4-openssl-dev (deb).
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1.9000
-Imports: DBI, grDevices, methods, utils, graph, Rgraphviz, grid,
-        ggplot2, magrittr, car, dplyr, tidyr, knitr, pander
-Suggests: testthat, rmarkdown
+Imports: grDevices, methods, utils, graph, Rgraphviz, grid, ggplot2,
+        magrittr, car, dplyr (>= 0.8.0.1), tidyr
+Suggests: testthat
 Maintainer: Frédéric M. Vanwindekens <f.vanwindekens@cra.wallonie.be>
 NeedsCompilation: no
-Packaged: 2019-04-08 15:28:30 UTC; fred
+Packaged: 2019-04-11 20:44:54 UTC; fred
 Author: Frédéric M. Vanwindekens [aut, cre]
     (<https://orcid.org/0000-0002-9117-7543>),
   Didier Stilmant [aut, ths],
   Philippe V. Baret [aut, ths]
 Repository: CRAN
-Date/Publication: 2019-04-09 13:02:51 UTC
+Date/Publication: 2019-04-11 21:57:07 UTC

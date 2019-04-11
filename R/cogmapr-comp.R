@@ -56,7 +56,7 @@ ConceptTest <- function(project,
                              dplyr::filter(unit_name %in% units),
                              by = c("doc_id", "name", "num", "indic", "unit_name")
                              ) %>%
-            do(test = tryCatch(
+            dplyr::do(test = tryCatch(
                    expr = do.call(test, args=(list(formula = value ~ unit_name,
                                                    data=.))),
                    error = function(e) {

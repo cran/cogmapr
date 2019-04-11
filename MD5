@@ -1,17 +1,16 @@
-2a29d6b0697b9e4848decb1500c512c4 *DESCRIPTION
-a5e5afeebca928ccb45b2701a0528bd0 *NAMESPACE
-db997b7be2d165a962bc0025a4cf3884 *R/cogmapr-comp.R
+f165394074205eccb1bc883058cdcad6 *DESCRIPTION
+7951ca29519de7d6bae26a84c40c09c7 *NAMESPACE
+01260c8914bbc1e8eaab25203dec77ca *R/cogmapr-comp.R
 467099ddaeac0f073d767de2da925ba8 *R/cogmapr-indic.R
 b4fe12876c37f8a22cde06e9701eecf0 *R/cogmapr-package.R
 2917beb8cda9003dd08b8f13e34a4b8f *R/cogmapr-qcoder.R
 4c166eb55cca0282eb69eb52a301ff52 *R/cogmapr-quotes.R
-28481964bd45bec6200e304af37fa404 *R/cogmapr-report.R
-f4f61075440b70d0dc7ecdc0261db85a *R/cogmapr.R
+fe900671de693e645fd099c71650af59 *R/cogmapr.R
 3daba49e0b6271d6c62c6fcff8e81487 *R/globalVariables.R
 8d2487dbf45064f33b08e5a80830b68e *R/utils-pipe.R
 64191d806cc58a950e39eb1bf75233f3 *inst/CITATION
 a03c8847fc0cd3b42fde56ebefb7a54a *inst/NEWS
-c6def856fa37526443beed22e593a6be *inst/THANKS
+40aacb783f4ab88b5806af26c97aa5be *inst/THANKS
 dd2cd2284d30c0550220f47e5612eb41 *inst/concepts_builder.xlsx
 4ea4d45ed3a82d60cf04ce2d72bfc23d *inst/hex/euler1736.png
 ebf33a8da231e62bdc2f64dd04f6f11c *inst/hex/euler1736_part.png
@@ -19,9 +18,6 @@ ebf33a8da231e62bdc2f64dd04f6f11c *inst/hex/euler1736_part.png
 1320116dc18ed5ae75832a45334cead0 *inst/hex/hex_cogmapr.png
 e28d563a0695bc5642ad6d5279b3f89e *inst/hex/imgHex.png
 29b042f421bb97b8cf00aadae52e8df7 *inst/init_script.R
-82e7d4b9e70261790abbe2105e689578 *inst/rmarkdown/report_icm.R
-67181ef51ea2f94b1a0cde3cda94148c *inst/rmarkdown/report_scm.R
-3905152b6e29c902d41702eaada210bf *inst/rmarkdown/sheet_coding.R
 bc648df18e6927d9827e156830272873 *inst/testdata/PROJECT_NAME/concepts/concepts.csv
 52070001dccb00ad23b667a3006831f2 *inst/testdata/PROJECT_NAME/data_frames/qcoder_codes_PROJECT_NAME.rds
 c22aa5657060b193035cc844866c43ee *inst/testdata/PROJECT_NAME/data_frames/qcoder_codings_PROJECT_NAME.rds
@@ -65,7 +61,7 @@ cf0b7593a5a48134612acb8975839860 *man/ConceptIndicSummary.Rd
 48553c7b6e8464e29f05699ac1542ca3 *man/ConceptOutdegreeIndiv.Rd
 648655b2ec86c537c18acaae41529b19 *man/ConceptTest.Rd
 957de2fd0c4b7eeb40ec1e94e6748c99 *man/ConceptTestSummary.Rd
-15c4df8650516ee2edbdf8acdd2a273b *man/EdgCMap.Rd
+56386aefd99d8cf76e6f9aced52ba501 *man/EdgCMap.Rd
 0f3cc602aa46809e646fbd7c788af2a1 *man/EdgSocCMap.Rd
 6ccd59e7449372530fbca41076f9407d *man/GraphIndicators.Rd
 d5e66dbbff114308d538883c74d02c38 *man/GraphIndicatorsICM.Rd
@@ -78,9 +74,6 @@ a3f513dfeca423d752a14cb596d661de *man/QuotesIndCMap.Rd
 a4ba5e90029c4df701230cef33ce528d *man/RelationshipTest.Rd
 af88ec22789c2385809c8a6c8a787588 *man/RelationshipTestSummary.Rd
 dd06740cca0c25a8b73df14aa6368f6f *man/RemoveCodings.Rd
-28563716b1fb81af1567e51b2b13ed1f *man/ReportICM.Rd
-4ce4189cd93086a68c8eef8a3513a535 *man/ReportSCM.Rd
-9bdd9fcdbe6b6b18f59097c461638d41 *man/SheetCoding.Rd
 ee38a5fea958ec79200f2d1153177b24 *man/SocCMap.Rd
 c4bd254b3ce80208197947f75f9dcfdb *man/cogmapr-package.Rd
 175e30c83fe2cac8b175ada4e3b37a86 *man/coordCMap.Rd
@@ -94,4 +87,4 @@ c4bd254b3ce80208197947f75f9dcfdb *man/cogmapr-package.Rd
 d3619342d05b9ea264fe9145fc7a41eb *man/plotIndCMap.Rd
 41fcde19fb856690e714876e463777c8 *man/plotSocCMap.Rd
 8a5c261ef839dcffc63b01b74358b127 *tests/testthat.R
-4ebdb3b03c2ceea3355d12279b6c63d3 *tests/testthat/test-cogmapr.R
+543e30525b5dd0cbd1a958c0e1fb86d9 *tests/testthat/test-cogmapr.R

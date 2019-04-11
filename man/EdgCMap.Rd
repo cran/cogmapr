@@ -14,7 +14,7 @@ EdgCMap(project, sep = ">", coder = "qcoder")
 \item{coder}{A character string indicating the coding tool used for coding the QDA. The only tool supported now is 'qcoder'. Earlier version of cogmapr worked with "RQDA" project (no more maintened).}
 }
 \value{
-A data.frame with the relationships identified in the interviews. Each relationships is linked to an agent ('name'), an edge's name ('edge') and a simplified edge's name ('edge.a') where any extra character other than "INTERGER>INTEGER" have been removed and the separator string has been replaced with "~", the varible at the origin of the relationships ('from'), the variable at the end of the relationships ('to').
+A data.frame with the relationships identified in the interviews. Each relationships ('coding_id') is linked to an agent ('doc_ed'), an edge's name ('edge'), the varible at the origin of the relationships ('concept_from'), the variable at the end of the relationships ('concept_to'), other properties of the relationships ('coding_sign', 'coding_weight', 'coding_class' and 'document_part') and the quotes linked to relationships ('selected_text').
 }
 \description{
 This function opens a Qualitative Data Analysis (QDA) project and extracts edge information.

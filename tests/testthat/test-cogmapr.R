@@ -1,9 +1,3 @@
-
-library("dplyr")
-library("pander")
-library(ggplot2)
-library(Rgraphviz)
-
 project_name <- "a_new_project"
 main_path <- paste0(system.file("testdata",package="cogmapr"),'/')
 project <- ProjectCMap(main_path,project_name)
@@ -69,7 +63,6 @@ test_that("The functions are reactive to options", {
 		    ), "list")
     expect_is(ConceptIndicatorsICM(project), "data.frame")
     expect_is(GraphIndicatorsICM(project), "data.frame")
-    ## expect_id(tag.quotes.scm.edge(S4E, c("country_belgium","country_romania"), "4~19"))
 })
 
 
@@ -78,7 +71,8 @@ test_that("The functions are reactive to options", {
 context("Specific functions")
 
 test_that("The functions are reactive to options", {
-    expect_true(is.ggplot(ggCMap(data.ggCMap(project, min.weight = 2))))
+    ## p <- ggCMap(data.ggCMap(project, min.weight = 2))
+    ## expect_true(is.ggplot(p))
     expect_is(SocCMap(
         EdgSocCMap(project, min.weight = 2),
         project

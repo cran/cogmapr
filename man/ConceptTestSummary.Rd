@@ -20,7 +20,7 @@ A data frame
 Summary table on concept comparisons
 }
 \details{
-This function produce a summary table based on concept comparisons and is reactive to a limit of p.value beyoun which differences are considered as significant and are reported in the table
+This function produce a summary table based on concept comparisons and is reactive to a limit of p.value beyond which differences are considered as significant and are reported in the table
 }
 \examples{
 project_name <- "a_new_project"

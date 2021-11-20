@@ -20,7 +20,7 @@ A data frame of relationships and quotes
 Extract the quotes of a project linked to selected relationships
 }
 \details{
-Extract the quotes of a project linked to selected relationships. Units is a mandatory parameter as this function was initially developped for given the quotes linked to significantly different relationships between groups of documents (i.e.  units).
+Extract the quotes of a project linked to selected relationships. Units is a mandatory parameter as this function was initially developed for given the quotes linked to significantly different relationships between groups of documents (i.e.  units).
 }
 \examples{
 project_name <- "a_new_project"

@@ -106,7 +106,7 @@ ConceptCentrality <- function(project,
 ##' Compute the indicators of concepts of a Social Cognitive Map
 ##  ------------------------------------------------------------
 ##'
-##' Compute the indicators of concepts of a Social Cognitive Map (centrality, indegee, outdegree). It build a user friendly data frame. It includes the 'receiver' and the transmitter character of each vetex. The receiver character of a concept is calculated as the part of the indegree of this concept on its centrality. The transmitter character of a concept is calculated as the part of the outdegree of this concept on its centrality.
+##' Compute the indicators of concepts of a Social Cognitive Map (centrality, indegree, outdegree). It build a user friendly data frame. It includes the 'receiver' and the transmitter character of each vetex. The receiver character of a concept is calculated as the part of the indegree of this concept on its centrality. The transmitter character of a concept is calculated as the part of the outdegree of this concept on its centrality.
 ##'
 ##' (add formulae)
 ##' 
@@ -247,11 +247,12 @@ GraphIndicatorsTable <- function(df.graph.indic){
 ## == Indicator for the ICM ==
 ## ===========================
 
+## TODO ADAPT DOC
 ##' Indegree of vertices by document
 ##'
 ##' Indegree of vertices by document
 ##' @title Indegree of vertices by document
-##' @inheritParams EdgCMap
+##' @inheritParams EdgIndCMap
 ##' @return A data frame of Indegree by document (ICM)
 ##' @examples
 ##' project_name <- "a_new_project"
@@ -260,14 +261,14 @@ GraphIndicatorsTable <- function(df.graph.indic){
 ##' 
 ##' ConceptIndegreeIndiv(my.project)
 ##' @export
-ConceptIndegreeIndiv <- function(project, sep = ">", coder = "qcoder") {
+ConceptIndegreeIndiv <- function(project, min.weight = 1, weighted.icm = FALSE) {
 
-args <- sapply(names(formals(EdgCMap)), get, environment())
+args <- sapply(names(formals(EdgIndCMap)), get, environment())
 
-df.indegree <- do.call(EdgCMap, args) %>%
-  dplyr::group_by(doc_id) %>%
-  dplyr::count(concept_to) %>%
-  dplyr::rename(num = concept_to) %>%
+df.indegree <- do.call(EdgIndCMap, args) %>%
+  dplyr::group_by(doc_id,to) %>% 
+  dplyr::summarise(n=sum(coding_weight),.groups='keep') %>%
+  dplyr::rename(num = to) %>%
   dplyr::left_join(project$concepts, by = "num") %>%
   dplyr::select(doc_id, name, num, n) %>%
   dplyr::rename(indegree = n) %>%
@@ -278,11 +279,12 @@ df.indegree <- do.call(EdgCMap, args) %>%
 }
 
 
+## TODO ADAPT DOC
 ##' Outdegree of vertices by document
 ##'
 ##' Outdegree of vertices by document
 ##' @title Outdegree of vertices by document
-##' @inheritParams EdgCMap
+##' @inheritParams EdgIndCMap
 ##' @return A data frame of Outdegree by document (ICM)
 ##' @examples
 ##' project_name <- "a_new_project"
@@ -291,16 +293,14 @@ df.indegree <- do.call(EdgCMap, args) %>%
 ##' 
 ##' ConceptOutdegreeIndiv(my.project)
 ##' @export
-ConceptOutdegreeIndiv <- function(project,
-			     sep = ">",
-			     coder = "qcoder") {
+ConceptOutdegreeIndiv <- function(project, min.weight = 1, weighted.icm = FALSE) {
 
-args <- sapply(names(formals(EdgCMap)), get, environment())
+args <- sapply(names(formals(EdgIndCMap)), get, environment())
 
-df.outdegree <- do.call(EdgCMap, args) %>%
-  dplyr::group_by(doc_id) %>%
-  dplyr::count(concept_from) %>%
-  dplyr::rename(num = concept_from) %>%
+df.outdegree <- do.call(EdgIndCMap, args) %>%
+  dplyr::group_by(doc_id,from) %>% 
+  dplyr::summarise(n=sum(coding_weight),.groups='keep') %>%
+  dplyr::rename(num = from) %>%
   dplyr::left_join(project$concepts, by = "num") %>%
   dplyr::select(doc_id, name, num, n) %>%
   dplyr::rename(outdegree = n) %>%
@@ -311,11 +311,12 @@ df.outdegree <- do.call(EdgCMap, args) %>%
 }
 
 
+## TODO ADAPT DOC
 ##' Centrality of vertices by document
 ##'
 ##' Centrality of vertices by document
 ##' @title Centrality of vertices by document
-##' @inheritParams EdgCMap
+##' @inheritParams EdgIndCMap
 ##' @return A data frame of Centrality by document (ICM)
 ##' @examples
 ##' project_name <- "a_new_project"
@@ -324,11 +325,9 @@ df.outdegree <- do.call(EdgCMap, args) %>%
 ##' 
 ##' ConceptCentralityIndiv(my.project)
 ##' @export
-ConceptCentralityIndiv <- function(project,
-			     sep = ">",
-			     coder = "qcoder") {
+ConceptCentralityIndiv <- function(project, min.weight = 1, weighted.icm = FALSE) {
   ## environment(EdgSocCMap)  <- environment()
-  args <- sapply(names(formals(EdgCMap)), get, environment())
+  args <- sapply(names(formals(EdgIndCMap)), get, environment())
 
   df.centrality <- do.call(ConceptIndicIndiv, args) %>%
     dplyr::select(doc_id, name, num, centrality)
@@ -336,12 +335,12 @@ ConceptCentralityIndiv <- function(project,
   return(df.centrality)
 }
 
-
+## TODO ADAPT DOC
 ##' Concept Indicators of vertices by document
 ##'
 ##' Concept Indicators of vertices by document
 ##' @title Concept Indicators of vertices by document
-##' @inheritParams EdgCMap
+##' @inheritParams EdgIndCMap
 ##' @return A data frame of Concept Indicators by document (ICM)
 ##' @examples
 ##' project_name <- "a_new_project"
@@ -350,11 +349,9 @@ ConceptCentralityIndiv <- function(project,
 ##' 
 ##' ConceptIndicIndiv(my.project)
 ##' @export
-ConceptIndicIndiv <- function(project,
-			     sep = ">",
-			     coder = "qcoder") {
+ConceptIndicIndiv <- function(project, min.weight = 1, weighted.icm = FALSE) {
   ## environment(EdgSocCMap)  <- environment()
-  args <- sapply(names(formals(EdgCMap)), get, environment())
+  args <- sapply(names(formals(EdgIndCMap)), get, environment())
 
   df.centrality <- do.call(ConceptIndegreeIndiv, args) %>%
     dplyr::full_join(do.call(ConceptOutdegreeIndiv, args)) %>%

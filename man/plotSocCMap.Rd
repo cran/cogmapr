@@ -9,7 +9,7 @@ plotSocCMap(soc.cmap, layoutType = "neato", ..., main = "Social map")
 \arguments{
 \item{soc.cmap}{An object of class SocCMap, as an output of the SocCMap function}
 
-\item{layoutType}{Type of graph. See detail in RGraphviz. Can be 'neato', 'dot', 'twopi', 'circo', and 'fdp'. The default is 'neato'.}
+\item{layoutType}{Type of graph. See detail in RGraphViz. Can be 'neato', 'dot', 'twopi', 'circo', and 'fdp'. The default is 'neato'.}
 
 \item{...}{other graphical parameters}
 

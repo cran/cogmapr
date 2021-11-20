@@ -12,12 +12,12 @@ Functions for building cognitive maps based on qualitative data. Inputs are text
 Useful links:
 \itemize{
   \item \url{https://frdvnw.gitlab.io/cogmapr/}
-  \item Report bugs at \url{https://gitlab.com/FrdVnW/cogmapr/issues}
+  \item Report bugs at \url{https://gitlab.com/FrdVnW/cogmapr/-/issues}
 }
 
 }
 \author{
-\strong{Maintainer}: Frédéric M. Vanwindekens \email{f.vanwindekens@cra.wallonie.be} (0000-0002-9117-7543)
+\strong{Maintainer}: Frédéric M. Vanwindekens \email{f.vanwindekens@cra.wallonie.be} (\href{https://orcid.org/0000-0002-9117-7543}{ORCID})
 
 Authors:
 \itemize{

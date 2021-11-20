@@ -4,13 +4,17 @@
 \alias{plotIndCMap}
 \title{Plotting an Individual Cognitive Map}
 \usage{
-plotIndCMap(ind.cmap, layoutType = "neato",
-  main = paste("Individual map -", ind.cmap[["agent"]][["name"]]), ...)
+plotIndCMap(
+  ind.cmap,
+  layoutType = "neato",
+  main = paste("Individual map -", ind.cmap[["agent"]][["name"]]),
+  ...
+)
 }
 \arguments{
 \item{ind.cmap}{An object of class IndCMap, as an output of the IndCMap function}
 
-\item{layoutType}{Type of graph. See detail in RGraphviz. Can be 'neato', 'dot', 'twopi', 'circo', and 'fdp'. The default is 'neato'.}
+\item{layoutType}{Type of graph. See detail in RGraphViz. Can be 'neato', 'dot', 'twopi', 'circo', and 'fdp'. The default is 'neato'.}
 
 \item{main}{The title of the map. By default it is "Individual map - Agent's name"}
 

@@ -4,8 +4,14 @@
 \alias{SocCMap}
 \title{Social Cognitive Mapping}
 \usage{
-SocCMap(data.edges.soc, project, label = "num", minlen = 1,
-  fontsize = 16, shape = "box")
+SocCMap(
+  data.edges.soc,
+  project,
+  label = "num",
+  minlen = 1,
+  fontsize = 16,
+  shape = "box"
+)
 }
 \arguments{
 \item{data.edges.soc}{A data.frame as produced by the EdgSocCMap function}
@@ -32,7 +38,7 @@ a 'SocCMap' object, a list containing various information that could be use for 
 }
 }
 \description{
-Formatting the data for plotting an Social Cogntive Map
+Formatting the data for plotting an Social Cognitive Map
 }
 \examples{
 project_name <- "a_new_project"

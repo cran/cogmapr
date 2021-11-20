@@ -11,6 +11,8 @@
 ##' @inheritParams ConceptIndicIndiv
 ##' @param units The units to compare
 ##' @param output "p.value" (default) or "raw.data".
+##' @param sep Separation used in the relationships definition. Default is ">" (ex : 1>3)
+##' @param coder Coding tool used for this project. Default is "qcoder" (only implemented now)
 ##' @return A data frame (if output = "p.value"), a list of data frame (if output = "raw.data").
 ##' @examples
 ##' project_name <- "a_new_project"
@@ -18,7 +20,7 @@
 ##' my.project <- ProjectCMap(main_path, project_name)
 ##'
 ##' ## need more documents
-##' ## ConceptTest(my.project, units = c("Belgium", "Québec"))
+##' ConceptTest(my.project, units = c("Belgium", "Québec"))
 ##' @export
 ConceptTest <- function(project,
                         units,
@@ -200,6 +202,7 @@ RelationshipTest  <- function(project,
             ## dplyr::summarise(weight = sum(coding_weight)) %>%
             dplyr::full_join(all.edges.units) %>%
             dplyr::filter(unit_name %in% units) %>%
+            dplyr::mutate(p.value = as.character(p.value)) %>%
             tidyr::replace_na(list(coding_weight = 0)) %>%
             as.data.frame()
 
@@ -242,7 +245,7 @@ RelationshipTest  <- function(project,
 
 ##' Summary table on relationship comparisons
 ##'
-##' This function produce a summary table based on relationship comparisons and is reactive to a limit of p.value beyoun which differences are considered as significant and are reported in the table
+##' This function produce a summary table based on relationship comparisons and is reactive to a limit of p.value beyond which differences are considered as significant and are reported in the table
 ##' @title Summary table on relationship comparisons
 ##' @inheritParams RelationshipTest
 ##' @param limit.p.value A numeric.
@@ -270,7 +273,7 @@ RelationshipTestSummary <- function(project,
         dplyr::left_join(EdgSocCMap(project, units=units[1]) %>%
                          dplyr::select(edge, coding_weight)
                          ) %>%
-        dplyr::rename_(.dots=stats::setNames('coding_weight', units[1])) %>%
+        dplyr::rename(.dots=stats::setNames('coding_weight', units[1])) %>%
         dplyr::left_join(EdgSocCMap(project, units=units[2]) %>%
                          dplyr::select(edge, coding_weight)
                          ) %>%
@@ -310,7 +313,7 @@ ConceptIndicSummary <- function(project,
 
 ##' Summary table on concept comparisons
 ##'
-##' This function produce a summary table based on concept comparisons and is reactive to a limit of p.value beyoun which differences are considered as significant and are reported in the table
+##' This function produce a summary table based on concept comparisons and is reactive to a limit of p.value beyond which differences are considered as significant and are reported in the table
 ##' @title Summary table on concept comparisons
 ##' @inheritParams ConceptTest
 ##' @inheritParams RelationshipTestSummary

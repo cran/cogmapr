@@ -2,7 +2,7 @@
 % Please edit documentation in R/cogmapr-quotes.R
 \name{QuotesIndCMap}
 \alias{QuotesIndCMap}
-\title{Extract all quotes of a document (or an Individual Cognitivce Map)}
+\title{Extract all quotes of a document (or an Individual Cognitive Map)}
 \usage{
 QuotesIndCMap(project, doc.id)
 }

@@ -9,7 +9,10 @@ devtools::install_github('FrdVnW/qcoder', ref = "cogmap-dev", upgrade = 'never')
 install.packages("BiocManager")
 BiocManager::install(c("graph", "Rgraphviz"), update = FALSE)
 
-devtools::install_git("https://gitlab.com/FrdVnW/cogmapr", ref = "master", upgrade = 'never')
+install.packages("cogmapr")
+
+devtools::install_git("https://gitlab.com/FrdVnW/cogmapr", ref = "dev", upgrade = 'never')
+devtools::install_git("https://gitlab.com/FrdVnW/cogmapr", ref = "RELEASE_0.9.1", upgrade = 'never')
 
 devtools::install_git("https://gitlab.com/FrdVnW/cogmapvisualizr", ref = "master", upgrade = 'never')
 

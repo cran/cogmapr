@@ -79,7 +79,6 @@ ProjectCMap <- function(main_path, project_name, coder = "qcoder", sep = ">"){
 ##' 
 ##' EdgCMap(my.project)
 ##' @export 
-
 EdgCMap <- function(project, sep = ">", coder = "qcoder") {
     if (coder == "qcoder") {
         data.edges <- project[['codings']] %>%
@@ -95,13 +94,58 @@ EdgCMap <- function(project, sep = ">", coder = "qcoder") {
 ## ==================
 
 
+
+
+## TODO : better document
+
+##' Extract all edges from a Qualitative Data Analysis project for individual cognitive mapping
+##'
+##' This function opens a Qualitative Data Analysis (QDA) project and extracts edge information for individual cognitive mapping
+##'
+##' The coding used in the QDA have to be done using the 'cogamp-dev' branch of the qcoder package (github : 'FrdVnW/qcoder'). devtools::install_github('FrdVnW/qcoder', ref = "cogmap-dev", upgrade = 'never')
+##' 
+##' @inheritParams EdgCMap
+##' @param min.weight A integer that will determine the minimum (>=) weight of relationships that will be taken into account. Relationships with a lower weight (<) will not be shown. Default is set to 1 (\emph{i.e.} all relationships are shown).
+##' @param weighted.icm A boolean. If FALSE, the weight of the relationships in the ICM will be fixed to 1.
+##' @return A data.frame 
+##' @examples
+##' project_name <- "a_new_project"
+##' main_path <- paste0(system.file("testdata", package = "cogmapr"), '/')
+##' my.project <- ProjectCMap(main_path, project_name)
+##' 
+##' EdgIndCMap(my.project)
+##' @export 
+
+EdgIndCMap <- function(project, min.weight = 1, weighted.icm = FALSE) {
+    data.edges <- EdgCMap(project)[c("coding_id", "doc_id", "concept_from", "concept_to", "coding_sign", "coding_weight", "coding_class", "document_part","edge")]
+    if (weighted.icm == TRUE) {
+    } else {
+        data.edges$coding_weight <- 1
+    }
+    data.edges.ind <- data.edges %>%
+        dplyr::group_by(doc_id,edge) %>%
+        dplyr::summarise(coding_weight=ifelse(weighted.icm,
+                                              sum(coding_weight),
+                                              as.numeric(coding_weight > 0)),.groups='keep') %>%
+        dplyr::summarise(coding_weight=sum(coding_weight)) %>%
+        dplyr::filter(coding_weight >= min.weight) %>%
+        dplyr::mutate(from = gsub("(\\d+)~(\\d+)","\\1", edge)) %>%
+        dplyr::mutate(to = gsub("(\\d+)~(\\d+)","\\2", edge)) %>%    
+        as.data.frame()
+    return(data.edges.ind)
+}
+
+
+
+
+
 ## Creating Individual Cognitive Map
 ## ---------------------------------
 
 ##' Individual Cognitive Mapping
 ##'
 ##' 
-##' Formatting the data for plotting an Individual Cogntive Map
+##' Formatting the data for plotting an Individual Cognitive Map
 ##'
 ##' @inheritParams EdgCMap
 ##' @param doc.id The id of a document 
@@ -182,7 +226,7 @@ IndCMap <- function(project, doc.id) {
 ##' Plotting an Individual Cognitive Map
 ##'
 ##' @param ind.cmap An object of class IndCMap, as an output of the IndCMap function
-##' @param layoutType Type of graph. See detail in RGraphviz. Can be 'neato', 'dot', 'twopi', 'circo', and 'fdp'. The default is 'neato'. 
+##' @param layoutType Type of graph. See detail in RGraphViz. Can be 'neato', 'dot', 'twopi', 'circo', and 'fdp'. The default is 'neato'. 
 ##' @param main The title of the map. By default it is "Individual map - Agent's name"
 ##' @param ... other graphical parameters
 ##' @return A plot
@@ -210,20 +254,19 @@ plotIndCMap <- function(ind.cmap, layoutType="neato", main = paste('Individual m
 ## Social Mapping
 ## ==============
 
-## Edges and weights of a Social Cogntive Map
+## Edges and weights of a Social Cognitive Map
 ## ------------------------------------------
 
-##' Aggregation of the relationships identified in a serie of Individual Cognitie Maps
+##' Aggregation of the relationships identified in a serie of Individual Cognitive Maps
 ##'
 ##' This function will produce a data frame that contains all relationships of a serie of Individual Cognitive Maps. The weights of these relationships are calculated.
 ##'
-##' The funcrion can be used to produce a data frame that contains only the relation with a minimum weight or that concerns only a type of agents.
+##' The function can be used to produce a data frame that contains only the relation with a minimum weight or that concerns only a type of agents.
 ##'
 ##' @inheritParams EdgCMap
-##' @param min.weight A integer that will determine the minimum (>=) weight of relationships that will be taken into account. Relationships with a lower weight (<) will not be shown. Default is set to 1 (\emph{i.e.} all relationships are shown).
+##' @inheritParams EdgIndCMap
 ##' @param filters A list of named strings that will filter the relationships showed in the SCM. e.g. =list(coding_class = "A_coding_class", document_part = "A_document_part")=. To date, these filters are linked to the nature of relationships.
 ##' @param units A string vector giving the names of the units (i.e. classes linked to documents) that will be include in the SCM. It is a second type of filter.
-##' @param weighted.icm A boolean. If FALSE, the weight of the relationships in the ICM will be fixed to 1.
 ##' @return A data frame with four or five variables :
 ##' ##' \describe{
 ##' \item{$edge}{The name of the relationship, of the generic form \emph{x~y}}
@@ -306,7 +349,7 @@ EdgSocCMap <- function(project, min.weight = 1, filters = NULL, units = 'all', w
 
 ##' Social Cognitive Mapping
 ##'
-##' Formatting the data for plotting an Social Cogntive Map
+##' Formatting the data for plotting an Social Cognitive Map
 ##'
 ##' @param data.edges.soc A data.frame as produced by the EdgSocCMap function
 ##' @inheritParams EdgSocCMap
@@ -374,7 +417,7 @@ SocCMap <- function(data.edges.soc, project, label = "num", minlen = 1, fontsize
 ##' Plotting a Social Cognitive Map
 ##'
 ##' @param soc.cmap An object of class SocCMap, as an output of the SocCMap function
-##' @param layoutType Type of graph. See detail in RGraphviz. Can be 'neato', 'dot', 'twopi', 'circo', and 'fdp'. The default is 'neato'. 
+##' @param layoutType Type of graph. See detail in RGraphViz. Can be 'neato', 'dot', 'twopi', 'circo', and 'fdp'. The default is 'neato'. 
 ##' @param main The title of the map. By default it is "Individual map - Agent's name"
 ##' @param ... other graphical parameters
 ##' @return A plot
@@ -407,7 +450,7 @@ plotSocCMap <- function(soc.cmap, layoutType = "neato", ..., main = "Social map"
 ##' Get the coordinates of the vertices of a Cognitive Map. The output of this function can be useful for plotting Cognitive Maps in a personalize ways (as with ggplot2 as done by the ggCMap function of this package)
 ##'
 ##' @param soc.cmap An object of class SocCMap, as an output of the SocCMap function
-##' @param layoutType Type of graph. See detail in RGraphviz. Can be 'neato', 'dot', 'twopi', 'circo', and 'fdp'. The default is 'neato'.
+##' @param layoutType Type of graph. See detail in RGraphViz. Can be 'neato', 'dot', 'twopi', 'circo', and 'fdp'. The default is 'neato'.
 ##' @return A data frame with three variable :
 ##' \describe{
 ##' \item{$vertex}{The number of the vertex)}
@@ -455,7 +498,7 @@ coordCMap <- function(soc.cmap, layoutType = "neato") {
 ##' @inheritParams coordCMap
 ##' @param vertex.filter A vector of integers or characters given the 'id' of vertices (concepts) that will be included in the map. By default, all vertices are included (vertex.filter = NULL) 
 ##' @param edge.filter A vector of characters given the name "i~j" of edges (relationships from "i" to "j") that will be included in the map. By default, all edges are included (edge.filter = NULL)
-##' @param limit.to.filters A logical that will impact the position of the vertices. FALSE (the default) will filter vertices and edges (vertex.filter, edge.filter) keeping the position they would have in the unfiltered cognitive map (interesting with backgroup). TRUE will fully re-compute the position of the vertices, building a cognitive map in its own (better readability).
+##' @param limit.to.filters A logical that will impact the position of the vertices. FALSE (the default) will filter vertices and edges (vertex.filter, edge.filter) keeping the position they would have in the unfiltered cognitive map (interesting with background). TRUE will fully re-compute the position of the vertices, building a cognitive map in its own (better readability).
 ##' @param level 0 or 1. Filter the edge/vertices at x level around the filtered edges/vertices (==Not implemented yet==)
 ##' @examples
 ##' project_name <- "a_new_project"
@@ -551,7 +594,7 @@ data.ggCMap <- function(project, min.weight = 1,
 ##' @param data A list, the output of the 'data.ggCMap' function, containing all useful vertex and edge information for the cognitive maps. 
 ##' @param size.concepts Size of the dot linked to vertices
 ##' @param size.labels Size of the labels of vertices
-##' @param size.edges Size of the lables of the weight of edges
+##' @param size.edges Size of the labels of the weight of edges
 ##' @param size.arrows Size of arrows (head)
 ##' @param alpha.arrows The transparency of arrows.
 ##' @examples
@@ -699,7 +742,16 @@ ggCMap.hl <- function(project, min.weight = 1,
     args.data <- sapply(names(formals(data.ggCMap)), get, environment())
 
     if (limit.to.filters) {
-        pnet <- ggCMap(do.call(data.ggCMap, args.data))
+        pnet <- ggCMap(
+            do.call(data.ggCMap,
+                    args.data),
+            size.concepts = size.concepts,
+            size.labels = size.labels,
+            size.edges = size.edges,
+            size.arrows = size.arrows,
+            alpha.arrows = alpha.arrows
+        )
+        ## todo : better code here above !!
     } else {    
         args.data.bg <- args.data
         args.data.bg$vertex.filter <- NULL

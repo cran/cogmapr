@@ -4,8 +4,14 @@
 \alias{ggCMap.bg}
 \title{Ghost cognitive map}
 \usage{
-ggCMap.bg(data, size.concepts = 4, size.labels = 4, size.edges = 4,
-  size.arrows = 4, map.color = "grey50")
+ggCMap.bg(
+  data,
+  size.concepts = 4,
+  size.labels = 4,
+  size.edges = 4,
+  size.arrows = 4,
+  map.color = "grey50"
+)
 }
 \arguments{
 \item{data}{A list, the output of the 'data.ggCMap' function, containing all useful vertex and edge information for the cognitive maps.}
@@ -14,7 +20,7 @@ ggCMap.bg(data, size.concepts = 4, size.labels = 4, size.edges = 4,
 
 \item{size.labels}{Size of the labels of vertices}
 
-\item{size.edges}{Size of the lables of the weight of edges}
+\item{size.edges}{Size of the labels of the weight of edges}
 
 \item{size.arrows}{Size of arrows (head)}
 

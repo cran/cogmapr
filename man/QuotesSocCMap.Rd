@@ -2,7 +2,7 @@
 % Please edit documentation in R/cogmapr-quotes.R
 \name{QuotesSocCMap}
 \alias{QuotesSocCMap}
-\title{Extract all quotes of documents (or a Social Cognitivce Map)}
+\title{Extract all quotes of documents (or a Social Cognitive Map)}
 \usage{
 QuotesSocCMap(project, min.weight = 1, filters = NULL, units = "all")
 }

@@ -32,7 +32,7 @@ QuotesCMap <- function(project) {
 ##' Extract all quotes of a document
 ##'
 ##' This function creates a data frame with all quotes of a one document of a Qualitative Data Analysis (QDA) project
-##' @title Extract all quotes of a document (or an Individual Cognitivce Map)
+##' @title Extract all quotes of a document (or an Individual Cognitive Map)
 ##' @inheritParams QuotesCMap
 ##' @param doc.id The id of a document (id of documents can be found in the data frame "documents" in the QDA project)
 ##' @return A data frame with relationships and quotes
@@ -53,7 +53,7 @@ QuotesIndCMap <- function(project, doc.id){
 ##' Extract all quotes of a group of documents (or of an Social Cognitive Map)
 ##'
 ##' This function creates a data frame with all quotes of a a group of documents of a Qualitative Data Analysis (QDA) project
-##' @title Extract all quotes of documents (or a Social Cognitivce Map)
+##' @title Extract all quotes of documents (or a Social Cognitive Map)
 ##' @inheritParams EdgSocCMap
 ##' @return A data frame of relationships and quotes
 ##' @examples
@@ -93,7 +93,7 @@ QuotesSocCMap <- function(project, min.weight = 1, filters = NULL, units = 'all'
 
 ##' Extract the quotes of a project linked to selected relationships
 ##'
-##' Extract the quotes of a project linked to selected relationships. Units is a mandatory parameter as this function was initially developped for given the quotes linked to significantly different relationships between groups of documents (i.e.  units).
+##' Extract the quotes of a project linked to selected relationships. Units is a mandatory parameter as this function was initially developed for given the quotes linked to significantly different relationships between groups of documents (i.e.  units).
 ##' @title Extract the quotes of a project linked to selected relationships
 ##' @inheritParams EdgSocCMap
 ##' @param selected.edge A vector of character value(s), the names of one or many relationship(s) of the map
@@ -123,7 +123,7 @@ df.quotes.scm.edge <- function(project, units, selected.edge){
 
 ##' Extract the quotes of a project linked to selected concepts
 ##'
-##' Extract the quotes of a project linked to selected concepts. Units is a mandatory parameter as this function was initially developped for given the quotes linked to significantly different concepts between groups of documents (i.e.  units).
+##' Extract the quotes of a project linked to selected concepts. Units is a mandatory parameter as this function was initially developed for given the quotes linked to significantly different concepts between groups of documents (i.e.  units).
 ##' @title Extract the quotes of a project linked to selected concepts
 ##' @inheritParams EdgSocCMap
 ##' @param selected.concept A vector of character/integer value(s), the id(s) of one or many concept(s) of the map

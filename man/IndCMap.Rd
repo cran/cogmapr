@@ -23,7 +23,7 @@ a 'IndCMap' object, a list containing various information that could be use for 
 }
 }
 \description{
-Formatting the data for plotting an Individual Cogntive Map
+Formatting the data for plotting an Individual Cognitive Map
 }
 \examples{
 project_name <- "a_new_project"

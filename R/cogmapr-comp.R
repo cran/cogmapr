@@ -186,6 +186,7 @@ RelationshipTest  <- function(project,
             dplyr::right_join(data.frame(edge = non.null.edges,
                                          stringsAsFactors=FALSE),
                               by = "edge") %>%
+            dplyr::mutate(p.value = as.character(p.value)) %>%
             tidyr::replace_na(list(p.value = "NR"))
     }
 
